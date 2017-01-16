@@ -1,4 +1,3 @@
-# CG.T-Tests
 # Example for Jags-Ymet-Xnom2grp-MrobustHet.R 
 #------------------------------------------------------------------------------- 
 # Optional generic preliminaries:
@@ -11,7 +10,9 @@ myDataFrame = read.csv( file="TwoGroupIQ.csv" )
 yName="Score"
 xName="Group"
 fileNameRoot = "TwoGroupIQrobustHet-" 
-RopeMuDiff=c(-0.5,0.5) ; RopeSdDiff=c(-0.5,0.5) ; RopeEff=c(-0.1,0.1)
+RopeMuDiff=c(-0.5,0.5) ; RopeEff=c(-0.2,0.2)
+# Got rid of the rope for differences in standard deviations
+# Changed to -.2 and .2 for rope since those are standard effect sizes
 
 
 graphFileType = "eps" 
@@ -37,6 +38,7 @@ summaryInfo = smryMCMC( mcmcCoda , RopeMuDiff=RopeMuDiff ,
 show(summaryInfo)
 # Display posterior information:
 plotMCMC( mcmcCoda , datFrm=myDataFrame , yName=yName , xName=xName , 
-          RopeMuDiff=RopeMuDiff , RopeSdDiff=RopeSdDiff , RopeEff=RopeEff ,
+          RopeMuDiff=RopeMuDiff  , RopeEff=RopeEff ,
           pairsPlot=TRUE , saveName=fileNameRoot , saveType=graphFileType )
+         `# Got rid of the displays for the differneces in standard deviations
 #------------------------------------------------------------------------------- 
